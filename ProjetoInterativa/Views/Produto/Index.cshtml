@@ -1,0 +1,48 @@
+﻿@model IEnumerable<ProjetoInterativa.Models.Produto>
+
+    <h1>Produtos Lista</h1>
+<table class="table table-striped table-dark">
+  <thead>
+    
+          <a class="btn btn-success" asp-controller="Produto" asp-action="Create">Cadastrar Novo Produto</a> 
+
+          <a class="btn btn-success" asp-controller="Fabricante" asp-action="Index">Acessar Lista Fabricante</a>
+         
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Nome do Produto</th>
+      <th scope="col">Fabricante</th>
+      <th scope="col">Categoria do Fabricante</th>
+      <th scope="col">Preço</th>
+      <th scope="col">Ações</th>
+
+    </tr>
+   
+  </thead>
+  <tbody>
+ 
+        @foreach(var item in Model)
+        {
+             <tr>
+                   <td>@item.ProdutoId</td>
+                  <td>@item.Nome</td>
+                  <td class="text-center">@item.FabricanteNome </td>
+                  <td class="text-center">@item.CategoriaFabricante</td>
+                  <td class="text-center">@item.Preco.ToString("c")</td>
+                  <td class="text-center">
+                            <a asp-controller="Produto" asp-action="Delete" asp-route-id="@item.ProdutoId" class="btn btn-danger">
+                              Deletar 
+                            </a>
+                       
+                            <a asp-controller="Produto" asp-action="Edit" asp-route-id="@item.ProdutoId" class="btn btn-primary">
+                              Editar 
+                            </a>
+                   </td>
+
+                </tr>
+
+        }
+       
+   
+  </tbody>
+</table>
